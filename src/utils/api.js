@@ -1,6 +1,14 @@
-const AUTH_TOKEN=localStorage.getItem("AUTH_TOKEN")
+
 export const api={
-    async addContact(data){
+    async login(data){
+        const response = await fetch("https://v1.stormapi.com/users/login",{
+           method:"POST",
+           body:data
+       })
+       return response.json()
+    },
+
+    async addContact(data,AUTH_TOKEN){
        const response = await fetch("https://v1.stormapi.com/contacts/create",{
            method:"POST",
            mode:"cors",
@@ -12,7 +20,7 @@ export const api={
        })
        return response.json()
     },
-    async addContacts(data){
+    async addContacts(data,AUTH_TOKEN){
         const response = await fetch("https://v1.stormapi.com/contacts/create-all",{
            method:"POST",
            mode:"cors",
@@ -24,7 +32,7 @@ export const api={
        })
        return response.json()
     },
-    async updateContact(data){
+    async updateContact(data,AUTH_TOKEN){
         const response = await fetch("https://v1.stormapi.com/contacts/update",{
            method:"POST",
            mode:"cors",
@@ -36,7 +44,7 @@ export const api={
        })
        return response.json()
     },
-    async updateContacts(data){
+    async updateContacts(data,AUTH_TOKEN){
         const response = await fetch("https://v1.stormapi.com/contacts/update-all",{
             method:"POST",
             mode:"cors",
@@ -49,7 +57,7 @@ export const api={
         return response.json()
     },
 
-    async readContact(id){
+    async readContact(id,AUTH_TOKEN){
         const response = await fetch(`https://v1.stormapi.com/contacts/read/${id}`,{
             method:"POST",
             mode:"cors",
@@ -60,7 +68,7 @@ export const api={
         })
         return response.json()
     },
-    async readContacts(){
+    async readContacts(AUTH_TOKEN){
         const response = await fetch("https://v1.stormapi.com/contacts/read-all",{
             method:"POST",
             mode:"cors",
@@ -71,7 +79,7 @@ export const api={
         })
         return response.json()
     },
-    async readContactsFilter(query){
+    async readContactsFilter(query,AUTH_TOKEN){
         const response = await fetch(`https://v1.stormapi.com/contacts/read-all?query=${query}`,{
             method:"POST",
             mode:"cors",
@@ -83,7 +91,7 @@ export const api={
         return response.json()
     },
 
-    async deleteContact(id){
+    async deleteContact(id,AUTH_TOKEN){
         const response = await fetch(`https://v1.stormapi.com/contacts/delete/${id}`,{
             method:"POST",
             mode:"cors",
@@ -94,7 +102,7 @@ export const api={
         })
         return response.json()
     },
-    async deleteContacts(ids){
+    async deleteContacts(ids,AUTH_TOKEN){
         const response = await fetch(`https://v1.stormapi.com/contacts/delete/${ids}`,{
             method:"POST",
             mode:"cors",
