@@ -3,7 +3,7 @@ import './App.css';
 import Login from"./components/login/index";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import AddUser from './views/adduser/index';
-import ViewUser from './views/vewUser/index';
+import ViewUser from './views/viewUser/index';
 import AuthService from './service/auth.service';
 import {ConContext} from'./context/contactContext';
 
