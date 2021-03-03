@@ -1,116 +1,143 @@
 
 export const api={
-    async login(data){
+    async signIn(username,password){
+        let formData =new FormData();
+        formData.append("app_name", "CS-SPA-REACT");
+        formData.append("username", username);
+        formData.append("password", password);
         const response = await fetch("https://v1.stormapi.com/users/login",{
            method:"POST",
-           body:data
+           body:formData
        })
        return response.json()
     },
 
     async addContact(data,AUTH_TOKEN){
-       const response = await fetch("https://v1.stormapi.com/contacts/create",{
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+       const response = await fetch("contacts/create",{
            method:"POST",
            mode:"cors",
-           headers:{
-               "Content-Type":"application/json",
-               "Authorization":`Bearer ${AUTH_TOKEN}`
-           },
+           headers:myHeaders,
            body:data
        })
        return response.json()
     },
     async addContacts(data,AUTH_TOKEN){
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
         const response = await fetch("https://v1.stormapi.com/contacts/create-all",{
            method:"POST",
            mode:"cors",
-           headers:{
-               "Content-Type":"application/json",
-               "Authorization":`Bearer ${AUTH_TOKEN}`
-           },
+           headers:myHeaders,
            body:data
        })
        return response.json()
     },
     async updateContact(data,AUTH_TOKEN){
-        const response = await fetch("https://v1.stormapi.com/contacts/update",{
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+        const response = await fetch("/contacts/update",{
            method:"POST",
            mode:"cors",
-           headers:{
-               "Content-Type":"application/json",
-               "Authorization":`Bearer ${AUTH_TOKEN}`
-           },
+           headers:myHeaders,
            body:data
        })
-       return response.json()
+       return response.json();
     },
     async updateContacts(data,AUTH_TOKEN){
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
         const response = await fetch("https://v1.stormapi.com/contacts/update-all",{
             method:"POST",
             mode:"cors",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${AUTH_TOKEN}`
-            },
+            headers:myHeaders,
             body:data
         })
         return response.json()
     },
 
     async readContact(id,AUTH_TOKEN){
-        const response = await fetch(`https://v1.stormapi.com/contacts/read/${id}`,{
-            method:"POST",
-            mode:"cors",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${AUTH_TOKEN}`
-            }
-        })
+        let myHeaders = new Headers();
+        var formdata = new FormData();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+        
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formdata,
+            redirect: 'follow'
+          }; 
+
+        let response = await fetch(`/contacts/read/${id}`, requestOptions)
         return response.json()
     },
     async readContacts(AUTH_TOKEN){
-        const response = await fetch("https://v1.stormapi.com/contacts/read-all",{
-            method:"POST",
-            mode:"cors",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${AUTH_TOKEN}`
-            }
-        })
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+        
+        var formdata = new FormData();
+        formdata.append("is_deleted", "0");
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        let response = await fetch("/contacts/read-all?query={\"filter_by\":{\"is_deleted\":\"0\"}}", requestOptions)
         return response.json()
+          
     },
-    async readContactsFilter(query,AUTH_TOKEN){
-        const response = await fetch(`https://v1.stormapi.com/contacts/read-all?query=${query}`,{
-            method:"POST",
-            mode:"cors",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${AUTH_TOKEN}`
-            }
-        })
+    async readContactsFilter(AUTH_TOKEN,query){
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+        
+        var formdata = new FormData();
+        
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        let response = await fetch(`/contacts/read-all?query=${query}`, requestOptions)
         return response.json()
     },
 
     async deleteContact(id,AUTH_TOKEN){
-        const response = await fetch(`https://v1.stormapi.com/contacts/delete/${id}`,{
-            method:"POST",
-            mode:"cors",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${AUTH_TOKEN}`
-            }
-        })
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+        
+        var formdata = new FormData();
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        let response = await fetch(`/contacts/delete/${id}`, requestOptions)
         return response.json()
     },
     async deleteContacts(ids,AUTH_TOKEN){
-        const response = await fetch(`https://v1.stormapi.com/contacts/delete/${ids}`,{
-            method:"POST",
-            mode:"cors",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":`Bearer ${AUTH_TOKEN}`
-            }
-        })
-        return response.json()
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${AUTH_TOKEN}`);
+        
+        var formdata = new FormData();
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        let response = await fetch(`/contacts/delete/${ids}`, requestOptions)
+            console.log(response.json())
     }
 }

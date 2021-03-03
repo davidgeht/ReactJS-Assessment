@@ -1,0 +1,40 @@
+.user-pic{
+    border-radius: 8px;
+    width: 170px;
+    margin-left:30px;
+}
+#view-user-form{
+    padding-top:40px;
+
+}
+.profile{
+    margin-top:30px
+}
+.profile-info{
+ display: flex;
+
+}
+.name{
+    font-family: SF Pro Display;
+    font-weight: 600;
+    
+    margin-top:30px;
+    margin-left:40px;
+
+   
+   
+}
+.profile-label{
+    font-family: SF Pro Display;
+    font-size: 14pt;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+}
+
+.profile-group{
+    margin-left: 35px;;
+}
+.qr-code{
+    margin-left: 200px;
+}

@@ -7,3 +7,8 @@
   --input-padding-x: 0.75rem;
   --input-padding-y: 0.75rem;
 }
+
+main{
+  display: flex;
+ 
+}

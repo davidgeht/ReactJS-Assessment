@@ -8,39 +8,39 @@
     justify-content: center !important;
     align-items: center !important;
 }
-.form-group {
+.form-group-login {
   padding-top: 25px !important;
 }
 
-.form-group label {
+.form-group-login label {
   position: absolute !important;
   color: transparent !important;
   transition: 0.1s ease-out !important;
 }
-.form-control {
+.form-control-login {
     border: 1px solid var(--gray) !important;
   }
 
-.form-control:focus::placeholder {
+.form-control-login:focus::placeholder {
     color: transparent !important;
   }
   
-.form-control:focus + label {
+.form-control-login:focus + label {
     color: var(--light-red) !important;
     margin-top: -65px !important;
     font-size: 14px !important;
     text-shadow: 0px 0px 1px!important;
   }
-  .form-control:focus {
+  .form-control-login:focus {
     border: 2px solid var(--red) !important;
     box-shadow: 0 0 0 0.2rem rgb(254 104 104 / 18%) !important;
   }
 
-.btn:hover {
+.btn-login:hover {
     background-color: var(--red) !important;
 }
   
-.btn-primary {
+.btn-login-primary {
     background-color: var(--light-red) !important;
     border: none !important;
 }

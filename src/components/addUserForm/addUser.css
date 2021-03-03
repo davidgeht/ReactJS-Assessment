@@ -1,0 +1,26 @@
+.main-view{
+    width: 80vw;
+    margin: 10px 10px 350px 10px;
+    padding:15px;
+    background-color: #cbcfd6;
+    border-radius: 8px;
+}
+
+.page-title{
+    font-size: 16pt;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+.addCon-line{
+    margin-top:20px;
+    margin-bottom: 30px;
+}
+.btn-addCon{
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left:20px;
+}
+.addCon-Checkbox-row{
+    margin-top:15px;
+}
+

@@ -1,3 +1,8 @@
+React-Assessment for Canada Start Co.
+Some notes:
+StormApi update endpoint didnt update the entry with the same id, instead it creates a new entry with a new id so the edit functionality in the app it self is a bit flawed, i could have worked around it but given the time constraint I decided to finish everything else. Also the upload profile pic feature, currently it uploads picture, however its an obect which can't be saved in storm api. 
+Username and password can be found in the .env file.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

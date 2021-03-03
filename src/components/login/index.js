@@ -1,30 +1,26 @@
-import react, {useState, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Logo from '../../components/logo/index';
-import { api } from '../../utils/api';
-import { useHistory } from "react-router-dom";
+import Logo from '../logo/index';
 import "./login.css";
+import AuthService from'../../service/auth.service';
 
-const Login =({setToken})=>{
+const Login =(props)=>{
+    const [loading, setLoading]=useState(false);
     const [error, setError]=useState("");
     const userRef=useRef();
     const passwordRef=useRef();
-    const history=useHistory();
+    
     const handleSubmit=async (e)=>{
         e.preventDefault();
-        let formdata = new FormData();
-        formdata.append("app_name", "CS-SPA-REACT");
-        formdata.append("username", userRef.current.value);
-        formdata.append("password", passwordRef.current.value);
-        console.log(userRef,passwordRef);
-        api.login(formdata)
+        setLoading(true)
+        AuthService.login(userRef.current.value,passwordRef.current.value)
         .then(data=>{
             console.log(data);
             if(data.status==="failed"){
                 setError(data.errors[0])
             }else if(data.status==="Access Token Generated Successfully"){
-                setToken(data.data.access_token)
+                props.history.push("/adduser")
             }
         })
     }
@@ -38,8 +34,9 @@ const Login =({setToken})=>{
                 className="d-flex flex-column align-items-center"
                 onSubmit={handleSubmit}
                 >
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group className="form-group-login" controlId="formBasicEmail">
                             <Form.Control
+                            className='form-control-login'
                             type="Username"
                             placeholder="Username"
                             ref={userRef}
@@ -48,10 +45,11 @@ const Login =({setToken})=>{
                             <label required>Username</label>
                     </Form.Group>
                     <Form.Group
-                        
+                        className="form-group-login"
                         controlId="formBasicPassword"
                     >
                         <Form.Control
+                        className='form-control-login'
                         type="password"
                         placeholder="Password"
                         ref={passwordRef}
@@ -64,7 +62,8 @@ const Login =({setToken})=>{
                     </div>
                     <Button
                         style={{ width: "162px"}}
-                        variant="primary outline-primary"
+                        variant="danger outline-danger"
+                        className="btn-login"
                         block
                         type="submit"
                         value="Log In"
